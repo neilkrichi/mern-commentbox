@@ -18,9 +18,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start-dev": "nf start -p 3000",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "server": "nodemon server.js",
     "eject": "react-scripts eject"
   },
   "proxy": "http://localhost:3001/"
