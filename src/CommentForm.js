@@ -1,36 +1,33 @@
-import React, { Component } from 'react'
-import style from './style'
+import React, { Component } from 'react';
+import style from './style';
+
 
 export default class CommentForm extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      author: '',
-      text: '',
-    }
-
+    this.state = { author: '', text: '' };
     this.handleAuthorChange = this.handleAuthorChange.bind(this);
     this.handleTextChange = this.handleTextChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-
   }
-
   handleAuthorChange(e) {
     this.setState({ author: e.target.value });
   }
-
   handleTextChange(e) {
-    this.setState({ text: e.target.value })
+    this.setState({ text: e.target.value });
   }
-
   handleSubmit(e) {
     e.preventDefault();
-    console.log(`${this.state.author} said ${this.state.text}`)
+    let author = this.state.author.trim();
+    let text = this.state.text.trim();
+    if (!text || !author) {
+      return;
+    }
+    this.props.onCommentSubmit({ author: author, text: text });
+    this.setState({ author: '', text: '' });
   }
-
   render() {
-    return(
+    return (
       <form style={ style.commentForm } onSubmit={ this.handleSubmit }>
         <input
           type='text'
@@ -47,7 +44,7 @@ export default class CommentForm extends Component {
         <input
           type='submit'
           style={ style.commentFormPost }
-          value='Post' />
+          value='Post'/>
       </form>
     )
   }
