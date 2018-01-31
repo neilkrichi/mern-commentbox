@@ -1,3 +1,4 @@
+'use strict';
 //import dependency
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
